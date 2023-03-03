@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Fitzilla</string>
+    <string name="menu_adaugaExercitiu">Adauga exercitiu</string>
+    <string name="menu_paginaPrincipala">Pagina principala</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_nav">gg</string>
+    <string name="close_nav">bg</string>
+</resources>
