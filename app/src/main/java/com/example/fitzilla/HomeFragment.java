@@ -16,20 +16,31 @@ import java.time.LocalDate;
 
 public class HomeFragment extends Fragment {
 
-//    private CalendarView calendarView;
+    private CalendarView calendarView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        CalendarView calendarView = getView().findViewById(R.id.home_calendar);
+        calendarView = getView().findViewById(R.id.home_calendar);
         calendarView.setDate(System.currentTimeMillis());
+
+
+        calendarView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
+
+
+
 
 }

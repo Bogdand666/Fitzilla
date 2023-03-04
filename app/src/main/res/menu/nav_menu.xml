@@ -15,4 +15,9 @@
         android:icon="@drawable/gym_haltera"
         android:title="@string/menu_adaugaExercitiu"/>
 
+    <item
+        android:id="@+id/nav_afiseazaExercitiu"
+        android:icon="@drawable/gym_haltera"
+        android:title="@string/menu_afiseazaExercitii"/>
+
 </menu>

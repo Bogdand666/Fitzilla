@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_adaugaExercitiu:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AddFragment()).commit();
                 break;
+            case R.id.nav_afiseazaExercitiu:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DisplayExerciseFragment()).commit();
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

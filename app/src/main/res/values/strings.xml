@@ -6,4 +6,47 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open_nav">gg</string>
     <string name="close_nav">bg</string>
+    <string name="menu_afiseazaExercitii">Afiseaza exercitii</string>
+
+    <string-array name="grupe_muschi">
+        <item>Selectati grupa</item>
+        <item>Piept</item>
+        <item>Umeri</item>
+        <item>Spate</item>
+        <item>Trapez</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Picioare</item>
+        <item>Abdomen</item>
+    </string-array>
+
+    <string-array name="Triceps">
+        <item>Selectati exercitiul</item>
+        <item>Flotări la paralele</item>
+        <item>Împins din culcat cu haltera cu priza apropiata</item>
+        <item>Extensii la scripete cu funia</item>
+        <item>Extensii cu gantera după cap</item>
+        <item>Extensii la scripete cu o singură mână</item>
+    </string-array>
+
+    <string-array name="Biceps">
+        <item>Selectati exercitiul</item>
+        <item>Flexii cu bara Z</item>
+        <item>Flexii ciocan</item>
+        <item>Flexii cu gantera</item>
+        <item>Flexii la scripete cu funia</item>
+        <item>Flexii Arnold</item>
+    </string-array>
+
+    <string-array name="Picioare">
+        <item>Selectati exercitiul</item>
+        <item>Genuflexiuni</item>
+        <item>Presa</item>
+        <item>Flexii pentru picioare</item>
+        <item>Extensii cvadriceps</item>
+        <item>Ridicari pe varfuri la Smith</item>
+        <item>Ridicari pe varfuri cu greutatea corpului</item>
+        <item>Fandari in fata</item>
+    </string-array>
+
 </resources>
