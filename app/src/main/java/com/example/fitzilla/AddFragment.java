@@ -80,7 +80,7 @@ public class AddFragment extends Fragment {
                    String descriere = tied_descriere.getText().toString();
                    Exercitiu exercitiu = new Exercitiu(nume,grupa,descriere);
 
-
+                   //scriere exercitii in realtime database.b
                    DatabaseReference fbExercitii = realtime_database.getReference("Exercitii");
                    DatabaseReference fbGrupa = fbExercitii.child(grupa);
                    DatabaseReference fbExercitiu = fbGrupa.child(nume);
@@ -94,22 +94,7 @@ public class AddFragment extends Fragment {
                    }
 
 
-//                   fbGrupa.addValueEventListener(new ValueEventListener() {
-//                       @Override
-//                       public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                           String nume_ex = snapshot.child(nume).getKey();
-//                           String grupa_ex = snapshot.getKey();
-//                           String descriere_ex = snapshot.child(nume).getValue().toString();
-//                           Exercitiu exercitiu_ex = new Exercitiu(nume_ex,grupa_ex,descriere_ex);
-//                           Toast.makeText(getContext(),exercitiu_ex.toString(),Toast.LENGTH_LONG).show();
-//
-//                       }
-//
-//                       @Override
-//                       public void onCancelled(@NonNull DatabaseError error) {
-//                           Toast.makeText(getContext(),"eroare",Toast.LENGTH_LONG).show();
-//                       }
-//                   });
+
                }
            }
 

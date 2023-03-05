@@ -80,12 +80,13 @@ public class DisplayExerciseFragment extends Fragment {
                             spnExercitiu.setVisibility(View.VISIBLE);
 
 
-
+                            //la selectare element din spnExercitiu se populeaza descrierea exercitiului si GIF-ul
                             spnExercitiu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                 @Override
                                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                     if(spnExercitiu.getSelectedItemId()!=0){
                                         DatabaseReference fbExercitiu = fbGrupa.child(spnExercitiu.getSelectedItem().toString());
+                                        //pentru citire descriere
                                         fbExercitiu.addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,18 +102,18 @@ public class DisplayExerciseFragment extends Fragment {
                                             }
                                         });
 
+                                        //pentru citire GIF
                                         StorageReference GIFS = storage.getReference("GIFS").child(spnExercitiu.getSelectedItem().toString());
-//                                        imageUri = GIFS.getFile(spnExercitiu.getSelectedItem().toString());
 
                                         try {
                                             final File localFile = File.createTempFile(spnExercitiu.getSelectedItem().toString(),"gif");
+
+
                                             GIFS.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                                                 @Override
                                                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                                                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                                                     imageUri = Uri.fromFile(localFile);
                                                     gifImageView.setImageURI(imageUri);
-//                                                    gifImageView.setImageBitmap(bitmap);
                                                     gifImageView.setVisibility(View.VISIBLE);
 
 
