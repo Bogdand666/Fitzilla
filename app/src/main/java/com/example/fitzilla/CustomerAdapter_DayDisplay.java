@@ -9,27 +9,30 @@ import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class CustomerAdapter extends BaseAdapter {
+public class CustomerAdapter_DayDisplay extends BaseAdapter {
 
     Context context;
     int layout;
+    ArrayList<Exercitiu> listaMea;
 
-    public CustomerAdapter(Context context, int layout) {
+    public CustomerAdapter_DayDisplay(Context context, int layout, ArrayList<Exercitiu> listaMea) {
         this.context = context;
         this.layout = layout;
+        this.listaMea = listaMea;
     }
+
 
 
     @Override
     public int getCount() {
-        return 0;
+        return listaMea.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return listaMea.get(i);
     }
 
     @Override
@@ -42,10 +45,15 @@ public class CustomerAdapter extends BaseAdapter {
         LayoutInflater infl = LayoutInflater.from(context);
         View v = infl.inflate(layout,viewGroup,false);
 
-        FirebaseDatabase realtime_database = FirebaseDatabase.getInstance();
+        Exercitiu exercitiu = listaMea.get(i);
 
+        TextView tvNrSerii = v.findViewById(R.id.ca_tv_nrSerii);
         TextView tvNume = v.findViewById(R.id.ca_tv_nume);
         TextView tvGrupa = v.findViewById(R.id.ca_tv_grupa);
+
+        tvNume.setText(exercitiu.getNume());
+        tvGrupa.append(exercitiu.getGrupa());
+        tvNrSerii.append("" + exercitiu.getNrSerii());
 
         return v;
     }

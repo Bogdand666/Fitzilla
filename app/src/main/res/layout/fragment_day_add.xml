@@ -7,6 +7,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DayAddFragment">
 
+    <TextView
+        android:id="@+id/day_add_tv_antet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
         android:id="@+id/day_add_spn_grupa"
         android:layout_width="match_parent"
@@ -18,7 +28,7 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/day_add_tv_antet" />
 
     <Spinner
         android:id="@+id/day_add_spn_nume"
@@ -34,27 +44,83 @@
         android:minHeight="48dp"
         android:visibility="invisible"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/day_add_tv_serii"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/day_add_til_serii"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Seria "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day_add_spn_nume"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="invisible">
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:visibility="invisible"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/day_add_tied_serii"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/day_add_tv_serii"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"
+        android:id="@+id/day_add_ll_serie">
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Introduceti numarul de serii"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_weight="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:id="@+id/day_add_til_repetari"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/day_add_tied_repetari"
+                android:hint="repetari"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:id="@+id/day_add_til_greutate"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/day_add_tied_greutate"
+                android:layout_weight="1"
+                android:hint="greutate(kg)"
+                android:inputType="numberDecimal"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/day_add_btn_addSerie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/plus" />
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/day_add_btn_salveaza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Salveaza exercitiu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

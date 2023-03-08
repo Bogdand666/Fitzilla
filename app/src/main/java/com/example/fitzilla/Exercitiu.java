@@ -9,12 +9,26 @@ public class Exercitiu {
 
     private String descriere;
 
+    int nrSerii;
+    private String[] greutate;
+    private String[] nrRepetari;
 
+
+
+    public Exercitiu(String nume, String grupa, String descriere,int nrSerii, String[] greutate, String[] nrRepetari) {
+        this.nume = nume;
+        this.grupa = grupa;
+        this.descriere = descriere;
+        this.nrSerii = nrSerii;
+        this.greutate = greutate;
+        this.nrRepetari = nrRepetari;
+    }
 
     public Exercitiu(String nume, String grupa, String descriere) {
         this.nume = nume;
         this.grupa = grupa;
         this.descriere = descriere;
+
     }
 
     public String getNume() {
@@ -41,9 +55,38 @@ public class Exercitiu {
         this.descriere = descriere;
     }
 
-    @NonNull
+    public int getNrSerii() {
+        return nrSerii;
+    }
+
+    public void setNrSerii(int nrSerii) {
+        this.nrSerii = nrSerii;
+    }
+
+    public String[] getGreutate() {
+        return greutate;
+    }
+
+    public void setGreutate(String[] greutate) {
+        this.greutate = greutate;
+    }
+
+    public String[] getNrRepetari() {
+        return nrRepetari;
+    }
+
+    public void setNrRepetari(String[] nrRepetari) {
+        this.nrRepetari = nrRepetari;
+    }
+
     @Override
     public String toString() {
-        return "nume: " + nume + " grupa: " + grupa + " descriere: " + descriere;
+        return "Exercitiu{" +
+                "nume='" + nume + '\'' +
+                ", grupa='" + grupa + '\'' +
+                ", descriere='" + descriere + '\'' +
+                ", greutate='" + greutate + '\'' +
+                ", nrRepetari='" + nrRepetari + '\'' +
+                '}';
     }
 }
