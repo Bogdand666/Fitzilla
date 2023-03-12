@@ -1,5 +1,6 @@
 package com.example.fitzilla;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -59,74 +60,46 @@ public class DayDisplayFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot grupa : snapshot.getChildren()){
                     DatabaseReference grupaRef = ziua.child(grupa.getKey());
-//                    Toast.makeText(getContext(),"" + grupa.getKey(),Toast.LENGTH_LONG).show();
-                    grupaRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for(DataSnapshot exercitiu : snapshot.getChildren()){
-//                                String greutateEx = exercitiu.child("Greutate").getValue().toString();
-//                                String repetariEx = exercitiu.child("Repetari").getValue().toString();
-                                String numeEx = exercitiu.getKey().toString();
-                                int nrSerii = (int) exercitiu.getChildrenCount();
-                                String[] greutate = new String[nrSerii];
-                                String[] nrRepetari = new String[nrSerii];
-                                for(int seriia = 0; seriia<nrSerii;seriia++){
-                                    greutate[seriia] = exercitiu.child("seria " + (seriia+1)).child("Greutate").getValue().toString();
-                                    nrRepetari[seriia] = exercitiu.child("seria " + (seriia+1)).child("Repetari").getValue().toString();
-                                }
-                                Exercitiu exercitiuDeListat = new Exercitiu(numeEx,grupa.getKey(),"",nrSerii,greutate,nrRepetari);
-//                                Exercitiu exercitiuDeListat= new Exercitiu(numeEx,grupa.getKey(),"",greutateEx,repetariEx);
-//                                Toast.makeText(getContext(),exercitiuDeListat.toString(),Toast.LENGTH_LONG).show();
-                                listaMea.add(exercitiuDeListat);
-                            }
 
-//                            listaMea.add(new Exercitiu("flexii","Picioare","","20","100"));
-//                            listaMea.add(new Exercitiu("flexii vaa","Picioare","","15","1220"));
-                            Toast.makeText(getContext(),"" + listaMea.size(),Toast.LENGTH_LONG).show();
-                            lvExercitii = v.findViewById(R.id.day_display_lv_exercitii);
-                            adapter_dayDisplay = new CustomerAdapter_DayDisplay(getContext(),R.layout.customer_adapter_day_display,listaMea);
-
-                            lvExercitii = v.findViewById(R.id.day_display_lv_exercitii);
-                            lvExercitii.setAdapter(adapter_dayDisplay);
-
-                            lvExercitii.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                    StringBuilder stringBuilder = new StringBuilder();
-                                    for(int seria1 = 0;seria1<listaMea.get(i).getNrSerii();seria1++) {
-                                        stringBuilder.append("greutate seria " + (seria1+1) + ": " + listaMea.get(i).getGreutate()[seria1] + "\n");
-                                        stringBuilder.append("repetari seria " + (seria1+1) + ": " + listaMea.get(i).getNrRepetari()[seria1] + "\n");
-                                    }
-                                    Toast.makeText(getContext(),stringBuilder,Toast.LENGTH_LONG).show();
-                                }
-                            });
-
-
+                    for(DataSnapshot exercitiu : grupa.getChildren()){
+                        String numeEx = exercitiu.getKey().toString();
+                        int nrSerii = (int) exercitiu.getChildrenCount();
+                        String[] greutate = new String[nrSerii];
+                        String[] nrRepetari = new String[nrSerii];
+                        for(int seriia = 0; seriia<nrSerii;seriia++){
+                            greutate[seriia] = exercitiu.child("seria " + (seriia+1)).child("Greutate").getValue(String.class);
+                            nrRepetari[seriia] = exercitiu.child("seria " + (seriia+1)).child("Repetari").getValue(String.class);
                         }
+                        Exercitiu exercitiuDeListat = new Exercitiu(numeEx,grupa.getKey(),"",nrSerii,greutate,nrRepetari);
+                        listaMea.add(exercitiuDeListat);
+                    }
+                    lvExercitii = v.findViewById(R.id.day_display_lv_exercitii);
+                    adapter_dayDisplay = new CustomerAdapter_DayDisplay(getContext(),R.layout.customer_adapter_day_display,listaMea);
 
+                    lvExercitii.setAdapter(adapter_dayDisplay);
+
+                    lvExercitii.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            for(int seria1 = 0;seria1<listaMea.get(i).getNrSerii();seria1++) {
+                                stringBuilder.append("greutate seria " + (seria1+1) + ": " + listaMea.get(i).getGreutate()[seria1] + "\n");
+                                stringBuilder.append("repetari seria " + (seria1+1) + ": " + listaMea.get(i).getNrRepetari()[seria1] + "\n\n");
+                            }
+                            AlertDialog.Builder seriiDialog = new AlertDialog.Builder(getContext());
+                            seriiDialog.setMessage(stringBuilder);
 
+                            AlertDialog alertDialog = seriiDialog.create();
+                            alertDialog.show();
                         }
                     });
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-//        listaMea.add(new Exercitiu("flexii","Picioare","","20","100"));
-//        listaMea.add(new Exercitiu("flexii vaa","Picioare","","15","1220"));
-//        Toast.makeText(getContext(),"" + listaMea.size(),Toast.LENGTH_LONG).show();
-//        lvExercitii = v.findViewById(R.id.day_display_lv_exercitii);
-//        adapter_dayDisplay = new CustomerAdapter_DayDisplay(getContext(),R.layout.customer_adapter_day_display,listaMea);
-//
-//        lvExercitii = v.findViewById(R.id.day_display_lv_exercitii);
-//        lvExercitii.setAdapter(adapter_dayDisplay);
 
 
 
@@ -134,30 +107,14 @@ public class DayDisplayFragment extends Fragment {
         fabAdauga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 DayAddFragment dayAddFragment = new DayAddFragment();
                 dayAddFragment.setArguments(bundle);
-
-
-
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.replace(R.id.fragment_container,dayDisplayFragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-
-
-
-
-
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container,dayAddFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
-
         return v;
     }
-
 }
